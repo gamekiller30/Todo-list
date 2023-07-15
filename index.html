@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Todos</title>
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="index.css">
+
+  <!--Font Awesome Icons-->
+  <script src="https://kit.fontawesome.com/9990c5d7cd.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+  <!--Nav Top-->
+
+<div class="top-navbar">
+
+<div class="left-section">
+
+  <i class="fa-solid fa-bars-staggered"></i>
+
+  <i class="fa-solid fa-house"></i>
+
+</div>
+
+
+<div class="right-section">
+
+<div class="project-name">My Project Name</div>
+
+<div class="notification">
+
+<i class="fa-solid fa-bell"></i>
+
+<div class="notifiy-num">2</div>
+</div>
+
+<i class="fa-solid fa-moon"></i>
+
+<i class="fa-solid fa-plus"></i>
+
+</div>
+
+</div>
+
+
+<!--Grid-->
+
+<div class="main-grid">
+
+
+<!--Side Nav-->
+
+<div class="side-nav">
+
+<div class="nav-panel">
+  <div class="project">
+  <i class="fa-solid fa-inbox"></i>
+  <p>Inbox</p>
+  </div>
+
+</div>
+
+<div class="nav-panel">
+
+  <div class="project">
+  <i class="fa-solid fa-calendar-week"></i>
+  <p>Today</p>
+</div>
+
+</div>
+
+<div class="nav-panel">
+
+  <div class="project">
+  <i class="fa-solid fa-bars-progress"></i>
+  <p>Projects</p>
+</div>
+
+  <i class="fa-solid fa-chevron-down"></i>
+
+</div>
+
+
+<!--Project-->
+<div class="project-panel">
+  <div class="project">
+    <i class="fa-solid fa-file"></i>
+  <p>Project1</p>
+</div>
+</div>
+
+
+
+<!--Project-->
+<div class="project-panel">
+  <div class="project">
+    <i class="fa-solid fa-file"></i>
+  <p>Project2</p>
+</div>
+</div>
+
+
+<!--Side nav end-->
+</div>
+
+
+
+<!--Main Content-->
+<div class="main-content">
+
+<h1>Project1  you have <span> 12 </span> Todos open</h1>
+
+
+<!--Content Modal-->
+
+<div class="content-modal">
+
+
+<div class="modal-top">
+
+<h2>New Todo</h2>
+
+<i class="fa-solid fa-xmark" id="close-btn"></i>
+
+
+</div>
+
+<div class="modal-bottom">
+
+<div class="up">
+<label for="title">Title</label>
+<input type="text" name="title" id="title" required>
+</div>
+
+<div class="up">
+  <label for="date">Due Date</label>
+  <input type="date" name="date" id="date" required>
+  </div>
+
+  <div class="up">
+    <label for="desc">Description</label>
+    <textarea name="desc" id="desc" required></textarea>
+    </div>
+
+  
+  <div class="up">
+    <label for="priority">Priority</label>
+    <select name="priority" id="priority">
+    <option value="High">High</option>
+    <option value="Medium">Medium</option>
+    <option value="Low">Low</option>
+  </select>
+    </div>
+
+  
+    <div class="up">
+      <label for="project">Select Project</label>
+      <select name="project" id="project">
+      <option value="project1">Project1</option>
+      <option value="project2">Project2</option>
+    </select>
+      </div>
+  
+  <!--Modal Bottom End-->
+  </div>
+
+<div class="modal-end">
+
+<button id="close-btn" class="close">Close</button>
+<button class="create-btn">Add Todo</button>
+
+</div>
+
+
+  
+  </div>
+
+
+
+  <!--Main End-->
+</div>
+
+
+
+
+
+<!--Grid End-->
+</div>
+
+
+
+
+
+
+
+
+
+<script src="index.js"></script>
+</body>
+</html>
