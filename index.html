@@ -72,36 +72,34 @@
 
 </div>
 
-<div class="nav-panel">
+<div class="nav-panel" id="project-show">
 
   <div class="project">
   <i class="fa-solid fa-bars-progress"></i>
   <p>Projects</p>
 </div>
 
-  <i class="fa-solid fa-chevron-down"></i>
+<div class="arrow">
+  <i class="fa-solid fa-chevron-up"></i>
+</div>
 
 </div>
 
+<div class="Project-area">
 
-<!--Project-->
-<div class="project-panel">
+<!--Add Project-->
+<div class="add-project-panel">
   <div class="project">
-    <i class="fa-solid fa-file"></i>
-  <p>Project1</p>
+    <i class="fa-solid fa-plus"></i>
+  <p>Add new Project</p>
 </div>
 </div>
 
 
 
-<!--Project-->
-<div class="project-panel">
-  <div class="project">
-    <i class="fa-solid fa-file"></i>
-  <p>Project2</p>
-</div>
-</div>
 
+
+</div>
 
 <!--Side nav end-->
 </div>
@@ -111,74 +109,42 @@
 <!--Main Content-->
 <div class="main-content">
 
-<h1>Project1  you have <span> 12 </span> Todos open</h1>
+<!--Todo Container Start-->
+<div class="todo-container">
 
-
-<!--Content Modal-->
-
-<div class="content-modal">
-
-
-<div class="modal-top">
-
-<h2>New Todo</h2>
-
-<i class="fa-solid fa-xmark" id="close-btn"></i>
-
-
-</div>
-
-<div class="modal-bottom">
-
-<div class="up">
-<label for="title">Title</label>
-<input type="text" name="title" id="title" required>
-</div>
-
-<div class="up">
-  <label for="date">Due Date</label>
-  <input type="date" name="date" id="date" required>
-  </div>
-
-  <div class="up">
-    <label for="desc">Description</label>
-    <textarea name="desc" id="desc" required></textarea>
-    </div>
-
+  <div class="todo-left">
   
-  <div class="up">
-    <label for="priority">Priority</label>
-    <select name="priority" id="priority">
-    <option value="High">High</option>
-    <option value="Medium">Medium</option>
-    <option value="Low">Low</option>
-  </select>
-    </div>
-
+  <input type="checkbox" name="check" id="check">
   
-    <div class="up">
-      <label for="project">Select Project</label>
-      <select name="project" id="project">
-      <option value="project1">Project1</option>
-      <option value="project2">Project2</option>
-    </select>
-      </div>
+  <div class="todo-text">
   
-  <!--Modal Bottom End-->
-  </div>
-
-<div class="modal-end">
-
-<button id="close-btn" class="close">Close</button>
-<button class="create-btn">Add Todo</button>
-
-</div>
-
-
+  <h3>Todo Header</h3>
+  
+  <p>Our Todo Text will go exactly here my friend!!!</p>
   
   </div>
+  
+  </div>
+  
+  
+  <div class="todo-right">
+  
+    
+    <i class="fa-solid fa-pencil"></i>
+  
+  
+    <i class="fa-solid fa-flag"></i>
+ 
 
-
+    <i class="fa-solid fa-circle-arrow-right"></i>
+ 
+ 
+    <i class="fa-solid fa-trash"></i>
+  
+  </div>
+  
+  </div>
+ <!--Todo Container End-->
 
   <!--Main End-->
 </div>
@@ -195,9 +161,131 @@
 
 
 
+<!--Content Modal2-->
+
+<div class="content-modal-2">
+
+
+  <div class="modal-top">
+  
+  <h2>New Project</h2>
+  
+  <div class="close-m">
+  <i class="fa-solid fa-xmark" id="proj-close-btn"></i>
+</div>
+  
+  </div>
+  
+  <div class="modal-bottom">
+  
+  <div class="up">
+  <label for="proj-name">Project Name</label>
+  <input type="text" name="proj-name" id="proj-name" required>
+  </div>
+ 
+    <!--Modal Bottom End-->
+    </div>
+  
+  <div class="modal-end">
+  
+  <button id="proj-close-btn" class="close">Close</button>
+  
+  <button class="proj-create-btn">Add Todo</button>
+  
+  </div>
+  
+  
+    
+    </div>
+
+
+    <!--Modal2 END-->
 
 
 
-<script src="index.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Content Modal-->
+
+<div class="content-modal">
+
+
+  <div class="modal-top">
+  
+  <h2>New Todo</h2>
+  
+  <i class="fa-solid fa-xmark" id="close-btn"></i>
+  
+  
+  </div>
+  
+  <div class="modal-bottom">
+  
+  <div class="up">
+  <label for="title">Title</label>
+  <input type="text" name="title" id="title" required>
+  </div>
+  
+  <div class="up">
+    <label for="date">Due Date</label>
+    <input type="date" name="date" id="date" required>
+    </div>
+  
+    <div class="up">
+      <label for="desc">Description</label>
+      <textarea name="desc" id="desc" required></textarea>
+      </div>
+  
+    
+    <div class="up">
+      <label for="priority">Priority</label>
+      <select name="priority" id="priority">
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+      </div>
+  
+    
+      <div class="up">
+        <label for="project">Select Project</label>
+        <select name="project" id="project">
+        <option value="project1">Project1</option>
+        <option value="project2">Project2</option>
+      </select>
+        </div>
+    
+    <!--Modal Bottom End-->
+    </div>
+  
+  <div class="modal-end">
+  
+  <button id="close-btn" class="close">Close</button>
+  <button class="create-btn">Add Todo</button>
+  
+  </div>
+  
+  
+    
+    </div>
+
+
+    <!--Modal END-->
+
+
+
+
+
+<script type="module" src="index.js"></script>
 </body>
 </html>
