@@ -8,7 +8,8 @@ let Todoid = 0;
 let ProjectId = 0;
 
 //Arrays
-const TodosArray = [];
+const TodosObjectArray = [];
+const AllProjectObjects = [];
 
 
 //Modal
@@ -87,8 +88,14 @@ add_project.addEventListener("click", () =>{
   create_btn_project.addEventListener("click", () =>{
     console.log(proj_name.value);
 
+
 //Id Starts with 1 again -> wichtig für ARRAYS später
 ProjectId++;
+
+const createdproj = myProjects(proj_name.value, ProjectId);
+    AllProjectObjects.push(createdproj);
+
+    console.log(AllProjectObjects[0].getProjectId())
 
 let panel = document.createElement("div");
 panel.classList.add("project-panel");
@@ -100,7 +107,7 @@ panel.id = ProjectId;
 main.innerHTML = "";
 
 let h1 = document.createElement("h1");
-h1.textContent = "Project Name: " + e.target.textContent + " the ID is: " + e.target.id;
+h1.textContent = "Project Name: " + AllProjectObjects[e.target.id - 1].getProjectname() + " the ID is: " + AllProjectObjects[e.target.id - 1].getProjectId();
 main.appendChild(h1);
 
   console.log(e.target.id);
@@ -132,7 +139,7 @@ icon.innerHTML = '<i class="fa-solid fa-file"></i>'
 create_btn.addEventListener("click", () =>{
 
 const myTodo = Todos(title_input.value, desc_input.value, date_input.value, priority_input.value);
-TodosArray.push(myTodo);
+TodosObjectArray.push(myTodo);
 
 //USE OF EXPORTED FUNC
 AddTodo(title_input.value, desc_input.value, date_input.value, priority_input.value);
@@ -140,7 +147,7 @@ AddTodo(title_input.value, desc_input.value, date_input.value, priority_input.va
 console.log(project_input.value)
 
 console.log(myTodo)
-console.log(TodosArray[0].getDate())
+console.log(TodosObjectArray[0].getDate())
 
 });
 
@@ -181,6 +188,16 @@ const IDValuation = () =>{Todoid++;return Todoid;}
 }
 
 
+//Factory Function for Projects
+const myProjects = (name, id) =>{
 
+  const ProjectArray = [];
+
+const getProjectId = () => id;
+const getProjectname = () => name;
+
+
+  return {ProjectArray, getProjectId, getProjectname};
+}
 
 

@@ -8,6 +8,11 @@ body{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+:root{
+
+  /*put colors in here for darkmode later*/
+}
+
 /*Nav Top*/
 
 .top-navbar{
@@ -238,6 +243,7 @@ margin-top: 20px;
 .content-modal-2 > .modal-bottom{
   padding: 20px;
 }
+
 
 
 
