@@ -1,7 +1,7 @@
 //MAIN
 export const main = document.querySelector(".main-content");
 
-export function AddTodo(title, description, duedate, priority) {
+export function AddTodo(title, description, duedate, priority, id) {
 
 /*HEADER
 let main_header = document.createElement("div");
@@ -17,6 +17,7 @@ main_header.appendChild(h1);
 /*TODO*/
 let todo_container = document.createElement("div");
 todo_container.classList.add("todo-container");
+todo_container.id = id;
 main.appendChild(todo_container);
 
 /*LEFT*/
@@ -77,8 +78,6 @@ console.log(e.target);
       div.style.color = "blue";
     }
   
-  }else{
-    console.log("Its "+ icons[i] + "not what you are looking for")
   }
 
 
