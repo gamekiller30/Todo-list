@@ -8,9 +8,41 @@ body{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-:root{
-
+:root.lightmode{
   /*put colors in here for darkmode later*/
+--nav-top-col: rgb(37, 37, 144);
+--main-col: white;
+--main-bg-col: whitesmoke;
+--btn-accent-col: rgba(160, 157, 157, 0.2);
+--btn-hov-accent-col: rgba(160, 157, 157, 0.6);
+--notify-col: rgba(245, 8, 8, 0.7);
+--side-hov-col: rgb(241, 237, 237);
+--cre-btn-bg-col: rgb(62, 62, 210);
+--close-icon-col: black;
+--modal-border-bottom: lightgray;
+--icon-col: gray;
+--text-col: black;
+--input-bg-col: rgb(235, 235, 235);
+--input-col: black;
+}
+
+
+:root.darkmode{
+  --nav-top-col: rgb(27, 27, 27);
+  --main-col: rgba(75, 75, 100, 0.6);
+  --main-bg-col: rgb(21, 21, 21);
+  --btn-accent-col: rgba(160, 157, 157, 0.2);
+  --btn-hov-accent-col: rgba(160, 157, 157, 0.6);
+  --notify-col: rgba(245, 8, 8, 0.2);
+  --side-hov-col: rgba(75, 75, 100, 0.9);
+  --cre-btn-bg-col: rgb(29, 28, 28);
+  --close-icon-col: black;
+  --modal-border-bottom: lightgray;
+  --sidebar-bg-col: rgb(17, 17, 17);
+  --icon-col: gray;
+  --text-col: gray;
+  --input-bg-col: rgba(75, 75, 100, 0.9);
+  --input-col: gray;
 }
 
 /*Nav Top*/
@@ -18,11 +50,11 @@ body{
 .top-navbar{
   display: flex;
   justify-content: space-between;
-  background-color: rgb(37, 37, 144);
+  background-color: var(--nav-top-col);
   align-items: center;
   padding: 20px;
   font-size: 10px;
-  color: rgb(218, 211, 211);
+  color: var(--main-col);
 }
 
 
@@ -48,11 +80,11 @@ font-size: 2.5em;
 
 .left-section > i:hover, .right-section > i:hover, .notification > i:hover{
   cursor: pointer;
-  background-color: rgba(160, 157, 157, 0.6);
+  background-color: var(--btn-hov-accent-col);
     }
   
     .left-section > i, .right-section > i, .notification > i{
-      background-color: rgba(160, 157, 157, 0.2);
+      background-color: var(--btn-accent-col);
       width: 45px;
       height: 45px;
       border-radius: 50%;
@@ -60,6 +92,7 @@ font-size: 2.5em;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      color: var(--icon-col);
         }
 
 
@@ -75,7 +108,7 @@ font-size: 2.5em;
     top: 0;
     right: 0;
     font-size: 0.7em;
-    background-color: rgba(245, 8, 8, 0.7);
+    background-color: var(--notify-col);
     width: 22px;
     height: 22px;
     display: flex;
@@ -96,10 +129,11 @@ font-size: 2.5em;
 
    /*Side Nav*/
  .side-nav{
-background-color: white;
+background-color: var(--sidebar-bg-col);
 padding: 20px 10px;
 font-size: 10px;
 opacity: 1;
+color: var(--text-col);
  }
 
  .side-nav > .nav-panel{
@@ -107,7 +141,7 @@ opacity: 1;
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
-  background-color: white;
+  background-color: var(--main-col);
   padding: 12px;
   font-size: 2em;
   border-radius: 5px;
@@ -118,7 +152,7 @@ opacity: 1;
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
-  background-color: white;
+  background-color: var(--main-col);
   padding: 12px;
   font-size: 2em;
   border-radius: 5px;
@@ -130,7 +164,7 @@ opacity: 1;
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
-  background-color: white;
+  /*background-color: var(--main-col);*/
   padding: 12px;
   font-size: 2em;
   margin-left: 20px;
@@ -144,13 +178,13 @@ opacity: 1;
 
  
  .side-nav > .nav-panel:hover,  .side-nav > .Project-area >.project-panel:hover{
-  background-color: rgb(241, 237, 237);
+  background-color: var(--side-hov-col);
   cursor: pointer;
 
  }
 
 .add-project-panel > .project > .fa-plus, .todo-right  > i{
-  background-color: rgba(160, 157, 157, 0.2);
+  background-color: var(--btn-accent-col);
   width: 32px;
       height: 32px;
       border-radius: 50%;
@@ -161,7 +195,7 @@ opacity: 1;
 }
 
 .add-project-panel > .project > .fa-plus:hover, .todo-right  > i:hover{
-  background-color: rgba(160, 157, 157, 0.6);
+  background-color: var(--btn-hov-accent-col);
   cursor: pointer;
 }
 
@@ -175,7 +209,7 @@ opacity: 1;
 
    /*Main Content*/
    .main-content{
-background-color: whitesmoke;
+background-color: var(--main-bg-col);
 padding: 20px;
    }
 
@@ -185,13 +219,14 @@ text-align: center;
 
 /*Todo Task*/
 .todo-container{
-background-color: white;
+background-color: var(--main-col);
 display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 20px;
 font-size: 10px;
 margin-top: 20px;
+color: var(--text-col);
 }
 
 .todo-left{
@@ -203,7 +238,6 @@ margin-top: 20px;
 
 #check{
   width: 20px;
-  
 }
 
 .todo-text > h3{
@@ -222,7 +256,7 @@ margin-top: 20px;
 }
 
 .todo-right  > i{
-  color: gray;
+  color: var(--icon-col);
   font-size: 1.8em;
 }
 
@@ -230,12 +264,13 @@ margin-top: 20px;
 
 /*Modal2*/
 .content-modal-2{
+  color: var(--text-col);
   position: fixed;
   display: none;
   top: 30%;
   left: 30%;
   min-width: 50%;
-  background-color: white;
+  background-color: var(--main-col);
   font-size: 10px;
 }
 
@@ -250,12 +285,13 @@ margin-top: 20px;
 
    /*Modal*/
    .content-modal{
+    color: var(--text-col);
     position: fixed;
     display: none;
     top: 30%;
     left: 30%;
     min-width: 50%;
-    background-color: white;
+    background-color: var(--main-col);
     font-size: 10px;
    }
 
@@ -263,7 +299,7 @@ margin-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid var(--modal-border-bottom);
     padding: 20px;
    }
 
@@ -295,11 +331,17 @@ gap: 15px;
       height: 40px;
       padding-left: 5px;
       outline: none;
+      background-color: var(--input-bg-col);
+      color: var(--input-col);
+      border: none;
      }
 
      .up > select{
       height: 40px;
       outline: none;
+      background-color: var(--input-bg-col);
+      color: var(--input-col);
+      border: none;
      }
 
      .modal-bottom > .up:nth-child(3){
@@ -310,8 +352,11 @@ gap: 15px;
      width: 100%;
      resize: none;
      height: 100%;
-     padding: 5px;
+     padding: 10px;
      outline: none;
+     background-color: var(--input-bg-col);
+     color: var(--input-col);
+     border: none;
      }
 
      .modal-end{
@@ -330,13 +375,13 @@ margin-top: -10px;
      }
 
   .close{
-background-color: white;
-border: 1px solid black;
+background-color: var(--main-col);
+border: 1px solid var(--close-icon-col);
 }
 
      .create-btn, .proj-create-btn{
-background-color: rgb(62, 62, 210);
-color: white;
+background-color: var(--cre-btn-bg-col);
+color: var(--main-col);
      }
 
      .close:hover, .create-btn:hover, .proj-create-btn{

@@ -7,6 +7,47 @@ import {main, AddTodo} from './TodoCreator.js';
 let Todoid = 0;
 let ProjectId = 0;
 
+//Darkmode
+const modeswitch = document.querySelector(".fa-moon");
+const root = document.documentElement;
+let darkcheck = localStorage.getItem("key");
+localStorage.setItem("key", true);
+
+console.log(darkcheck)
+
+//Standard auf WhiteMode setzen
+//root.classList.add("lightmode");
+
+function Lightmode() {
+  root.classList.remove("darkmode");
+  root.classList.add("lightmode");
+  localStorage.setItem("key", "true");
+}
+
+function Darkmode(){
+  root.classList.remove("lightmode");
+  root.classList.add("darkmode");
+  localStorage.setItem("key", "false");
+}
+
+if(darkcheck === "true"){
+  Lightmode();
+}else{
+  Darkmode();
+}
+
+modeswitch.addEventListener("click", () =>{
+  darkcheck = localStorage.getItem("key");
+
+if(darkcheck === "true"){
+  Darkmode();
+}else{
+  Lightmode();
+}
+
+});
+
+
 //Arrays
 const TodosObjectArray = [];
 const AllProjectObjects = [];
@@ -92,6 +133,7 @@ add_project.addEventListener("click", () =>{
 //Id Starts with 1 again -> wichtig für ARRAYS später
 ProjectId++;
 
+//Project Creation
 const createdproj = myProjects(proj_name.value, ProjectId);
     AllProjectObjects.push(createdproj);
 
@@ -123,28 +165,12 @@ h1.textContent = "Project Name: " + AllProjectObjects[e.target.id - 1].getProjec
 main.appendChild(h1);
 
 
-if(Array.isArray(AllProjectObjects[e.target.id - 1].ProjectArray[e.target.id - 1])){
-  ShowTodos(e.target.id);
-}else{
-  let h1 = document.createElement("h1");
-h1.textContent = "NO TODOS YET";
-main.appendChild(h1);
-}
+//Display and Validate TODOS
+AllProjectObjects[e.target.id - 1].Validate(e.target.id)
 
 
   console.log(e.target.id);
- })
-
-
-/* --  -- ---------- DISPLAY  --  -- ---------- */
-
-/* --  -- ----------  --  -- ----------*/
-
-/* --  -- ----------SPEZIFIC OBJECTS --  -- ---------- */
-
-
-
-
+ });
   
  let project = document.createElement("div");
  project.classList.add("project");
@@ -166,28 +192,6 @@ icon.innerHTML = '<i class="fa-solid fa-file"></i>'
   });
 
 
-//USE OF EXPORTED FUNC
-//!!!Displays the Actual Todo (Write logic onto Project Object to output when clicked on it)!!!
-
-function ShowTodos(id){
-
-  let l = AllProjectObjects[project_input.value - 1].ProjectArray[project_input.value - 1].length;
-
-  for(let i = 0; i < l ; i++){
-    AddTodo(AllProjectObjects[id - 1].ProjectArray[id - 1][i].getTitle(), AllProjectObjects[id - 1].ProjectArray[id - 1][i].getDesc(), AllProjectObjects[id - 1].ProjectArray[id - 1][i].getDate(), AllProjectObjects[id - 1].ProjectArray[id - 1][i].getPriority(), id);
-    }
-  
-
-}
-
-
-
-
-/* --  -- ---------- DISPLAY AND --  -- ---------- */
-
-/* --  -- ---------- ADDING TODOS TO --  -- ----------*/
-
-/* --  -- ----------SPEZIFIC OBJECTS --  -- ---------- */
 
 create_btn.addEventListener("click", () =>{
 
@@ -195,38 +199,8 @@ const myTodo = Todos(title_input.value, desc_input.value, date_input.value, prio
 TodosObjectArray.push(myTodo);
 
 
-
-//!!!!Move this Logic onto Project Object later on!!!!
-if(AllProjectObjects != "" && Array.isArray(AllProjectObjects[project_input.value - 1].ProjectArray[project_input.value - 1])){
- 
-
-  //Index is select value
- AllProjectObjects[project_input.value - 1].ProjectArray[project_input.value - 1].push(myTodo)
-
- //console.log(AllProjectObjects[project_input.value - 1].ProjectArray[0].getTitle());
-
- console.log(AllProjectObjects[project_input.value - 1].ProjectArray[project_input.value - 1]);
- console.log(AllProjectObjects[project_input.value - 1].ProjectArray);
-
-
- console.log("EXECUTEEEDDDDD")
-
-}else if(AllProjectObjects != "" && !Array.isArray(AllProjectObjects[project_input.value - 1].ProjectArray[project_input.value - 1])){
- 
-  AllProjectObjects[project_input.value - 1].ProjectArray[project_input.value - 1] = [myTodo];
-
-  console.log(AllProjectObjects[project_input.value - 1].ProjectArray[project_input.value - 1])
-
-  console.log(AllProjectObjects[project_input.value - 1].ProjectArray[project_input.value - 1][0].getTitle())
-  console.log("EXECUTED")
-}else{
-  console.log("Object Array empty");
-}
-
-
-
-
-
+//Add TODOS TO ARRAY ON OBJECT
+AllProjectObjects[project_input.value - 1].addTodos(project_input.value, myTodo);
 
 
 console.log(project_input.value)
@@ -236,11 +210,6 @@ console.log(project_input.value)
 });
 
 
-/* --  -- ---------- DISPLAY AND --  -- ---------- */
-
-/* --  -- ---------- ADDING TODOS TO --  -- ----------*/
-
-/* --  -- ----------SPEZIFIC OBJECTS --  -- ---------- */
 
 
 
@@ -281,6 +250,10 @@ const IDValuation = () =>{Todoid++;return Todoid;}
 }
 
 
+
+
+
+
 //Factory Function for Projects
 const myProjects = (name, id) =>{
 
@@ -290,7 +263,51 @@ const getProjectId = () => id;
 const getProjectname = () => name;
 
 
-  return {ProjectArray, getProjectId, getProjectname};
+const addTodos = (id, myTodo) =>{
+
+    //Index is select value
+    
+
+      AllProjectObjects[id - 1].ProjectArray.push(myTodo)
+  
+    
+     
+      console.log(AllProjectObjects[id - 1].ProjectArray);
+      console.log(AllProjectObjects[id - 1].ProjectArray);
+     
+     
+      console.log("EXECUTEEEDDDDD")
+    
+}
+
+
+//Display
+const Display = (id) =>  {
+
+  let l = AllProjectObjects[id - 1].ProjectArray.length;
+
+  for(let i = 0; i < l ; i++){
+    AddTodo(AllProjectObjects[id - 1].ProjectArray[i].getTitle(), AllProjectObjects[id - 1].ProjectArray[i].getDesc(), AllProjectObjects[id - 1].ProjectArray[i].getDate(), AllProjectObjects[id - 1].ProjectArray[i].getPriority(), id);
+    }
+  
+
+}
+
+const Validate = (id) =>{
+
+//Validation
+if(AllProjectObjects[id - 1].ProjectArray.length > 0){
+  Display(id);
+}else{
+  let h1 = document.createElement("h1");
+h1.textContent = "NO TODOS YET";
+main.appendChild(h1);
+}
+
+}
+
+
+  return {ProjectArray, getProjectId, getProjectname, Validate, addTodos};
 }
 
 
