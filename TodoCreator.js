@@ -1,6 +1,7 @@
 //MAIN
 export const main = document.querySelector(".main-content");
 
+
 export function AddTodo(title, description, duedate, priority, id) {
 
 /*HEADER
@@ -17,7 +18,7 @@ main_header.appendChild(h1);
 /*TODO*/
 let todo_container = document.createElement("div");
 todo_container.classList.add("todo-container");
-todo_container.id = id;
+todo_container.id = "id:" + id;
 main.appendChild(todo_container);
 
 /*LEFT*/
@@ -27,8 +28,16 @@ todo_container.appendChild(todo_left);
 
 let input = document.createElement("input");
 input.type = "checkbox";
-input.id = "check";
+input.id = "id:" + id;
 input.name = "check";
+input.addEventListener("click", (e) =>{
+  
+  let inputid = document.getElementById(e.target.id);
+  inputid.remove();
+
+  //REMOVE ELEMENTS FROM ARRAY SO THEY ARE NOT GETTIN DISPLAYED AGAIN
+  
+});
 todo_left.appendChild(input);
 
 let todo_text = document.createElement("div");
@@ -81,7 +90,7 @@ console.log(e.target);
   }
 
 
-  console.log(priority)
+  //console.log(priority)
 }
 
 

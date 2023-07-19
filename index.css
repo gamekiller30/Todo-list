@@ -24,6 +24,7 @@ body{
 --text-col: black;
 --input-bg-col: rgb(235, 235, 235);
 --input-col: black;
+--big-header: black;
 }
 
 
@@ -43,6 +44,11 @@ body{
   --text-col: gray;
   --input-bg-col: rgba(75, 75, 100, 0.9);
   --input-col: gray;
+  --big-header: gray;
+}
+
+h1{
+  color: var(--big-header);
 }
 
 /*Nav Top*/
@@ -119,10 +125,9 @@ font-size: 2.5em;
    }
 
 
-   /*Grid*/
+   /*Flex*/
 .main-grid{
-  display: grid;
-  grid-template-columns: 1fr 4fr;
+  display: flex;
   height: 100vh;
 }
 
@@ -134,6 +139,8 @@ padding: 20px 10px;
 font-size: 10px;
 opacity: 1;
 color: var(--text-col);
+flex: 1;
+display: block;
  }
 
  .side-nav > .nav-panel{
@@ -211,6 +218,7 @@ color: var(--text-col);
    .main-content{
 background-color: var(--main-bg-col);
 padding: 20px;
+flex: 4;
    }
 
 .Main-Header{
