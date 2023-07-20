@@ -201,7 +201,7 @@ display: block;
       flex-shrink: 0;
 }
 
-.add-project-panel > .project > .fa-plus:hover, .todo-right  > i:hover{
+.add-project-panel > .project > .fa-plus:hover, .todo-right >  i:hover{
   background-color: var(--btn-hov-accent-col);
   cursor: pointer;
 }
@@ -263,7 +263,7 @@ color: var(--text-col);
   column-gap: 20px;
 }
 
-.todo-right  > i{
+.todo-right > i{
   color: var(--icon-col);
   font-size: 1.8em;
 }
@@ -394,4 +394,6 @@ color: var(--main-col);
 
      .close:hover, .create-btn:hover, .proj-create-btn{
      cursor: pointer;
-           }
+}
+
+
