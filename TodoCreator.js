@@ -1,6 +1,47 @@
 //MAIN
 export const main = document.querySelector(".main-content");
+export const AllProjectObjects = [];
 
+
+export function PopulateMain(e){
+  main.innerHTML = "";
+
+  //BUGGY SECTION HERE
+  
+  let h1 = document.createElement("h1");
+  h1.textContent = "Project Name: " + AllProjectObjects[e.target.id].getProjectname() + " the ID is: " + AllProjectObjects[e.target.id].getProjectId();
+  main.appendChild(h1);
+  
+  console.log(e.target.id);
+  //Display and Validate TODOS
+
+AllProjectObjects[e.target.id].Validate(e.target.id);
+}
+
+
+function DisplayAgain(id){
+  main.innerHTML = "";
+
+  //BUGGY SECTION HERE
+  
+  let h1 = document.createElement("h1");
+  h1.textContent = "Project Name: " + AllProjectObjects[id].getProjectname() + " the ID is: " + AllProjectObjects[id].getProjectId();
+  main.appendChild(h1);
+  
+  console.log(id);
+  //Display and Validate TODOS
+
+AllProjectObjects[id].Validate(id);
+}
+
+
+
+
+
+
+
+
+let count = 0;
 
 export function AddTodo(title, description, duedate, priority, id) {
 
@@ -32,11 +73,24 @@ input.id = "id:" + id;
 input.name = "check";
 input.addEventListener("click", (e) =>{
   
+  /*
   let inputid = document.getElementById(e.target.id);
-  inputid.remove();
-
+  inputid.remove();*/
+ 
+  //!!!!!!!!!!!!!!! HIER AUFGEHÖRT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//0 noch durch id ersetzten, damit es für alle Projects klappt!!!
+  console.log(AllProjectObjects[0].ProjectArray);
+  console.log(AllProjectObjects[0].ProjectArray[id].getTitle());
+   AllProjectObjects[0].ProjectArray[id] = '';
+  console.log("After deletion ------------")
+  console.log(AllProjectObjects[0].ProjectArray);
   //REMOVE ELEMENTS FROM ARRAY SO THEY ARE NOT GETTIN DISPLAYED AGAIN
   
+  count++;
+  console.log("executed " + count + " times");
+  
+  //Display again
+  DisplayAgain(0); //hier auch id rein
 });
 todo_left.appendChild(input);
 

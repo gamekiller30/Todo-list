@@ -1,7 +1,4 @@
-import {main, AddTodo} from './TodoCreator.js';
-
-
-
+import {main, AddTodo, AllProjectObjects, PopulateMain} from './TodoCreator.js';
 
 //ID
 let Todoid = 0;
@@ -50,7 +47,7 @@ if(darkcheck === "true"){
 
 //Arrays
 const TodosObjectArray = [];
-const AllProjectObjects = [];
+
 
 
 //Modal
@@ -138,8 +135,18 @@ const Todos = (title, description, duedate, priority) =>{
     let l = AllProjectObjects[id].ProjectArray.length;
   
     for(let i = 0; i < l ; i++){
+      
+     // AddTodo(AllProjectObjects[id].ProjectArray[i].getTitle(), AllProjectObjects[id].ProjectArray[i].getDesc(), AllProjectObjects[id].ProjectArray[i].getDate(), AllProjectObjects[id].ProjectArray[i].getPriority(), i);
+      
+      //Check if in Array a elem was deleted and dont show it again
+   if(AllProjectObjects[id].ProjectArray[i] != ''){
       AddTodo(AllProjectObjects[id].ProjectArray[i].getTitle(), AllProjectObjects[id].ProjectArray[i].getDesc(), AllProjectObjects[id].ProjectArray[i].getDate(), AllProjectObjects[id].ProjectArray[i].getPriority(), i);
+      }else{
+        console.log(i+ " wurde gelöscht");
       }
+
+    
+    }
     
   
   }
@@ -154,11 +161,16 @@ const Todos = (title, description, duedate, priority) =>{
   h1.textContent = "NO TODOS YET";
   main.appendChild(h1);
   }
-  
   }
   
+  const Remove = (item) => {
+
+    item = "";
+
+  }
+
   
-    return {ProjectArray, getProjectId, getProjectname, Validate, addTodos};
+    return {ProjectArray, getProjectId, getProjectname, Validate, addTodos, Remove};
   }
   
   //Default Object
@@ -225,25 +237,12 @@ modal2_top_close.forEach( (item) =>{
 
 
 
-function PopulateMain(e){
-  main.innerHTML = "";
-
-  //BUGGY SECTION HERE
-  
-  let h1 = document.createElement("h1");
-  h1.textContent = "Project Name: " + AllProjectObjects[e.target.id].getProjectname() + " the ID is: " + AllProjectObjects[e.target.id].getProjectId();
-  main.appendChild(h1);
-  
-  console.log(e.target.id);
-  //Display and Validate TODOS
-  AllProjectObjects[e.target.id].Validate(e.target.id)
-}
 
 
 nav_panel.addEventListener("click", (e) =>{
 
   PopulateMain(e);
-  
+
   
    });
 
