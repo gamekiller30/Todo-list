@@ -54,13 +54,12 @@ if(darkcheck === "true"){
 const TodosObjectArray = [];
 
 
-
 //Modal
 const modal_close = document.querySelectorAll("#close-btn");
-const modal = document.querySelector(".content-modal");
+const modal = document.querySelectorAll(".content-modal");
 const add_btn = document.querySelector(".fa-plus");
-const create_btn = document.querySelector(".create-btn");
-
+const create_btn = document.querySelectorAll(".create-btn");
+const modal_update_close = document.querySelectorAll("#close-updated-btn");
 
 //Modal2
 //const modal_close_2 = document.querySelectorAll("#close-btn");
@@ -83,9 +82,16 @@ const date_input = document.querySelector("#date");
 const desc_input = document.querySelector("#desc");
 const priority_input = document.querySelector("#priority");
 const project_input = document.querySelector("#project");
+const project_updated = document.querySelector("#project-updated");
 
 
 
+  //Update 
+  const newtitle = document.querySelector("#title-updated");
+  const newdate = document.querySelector("#date-updated");
+  const newdesc = document.querySelector("#desc-updated");
+  const newpriority = document.querySelector("#priority-updated");
+  const newprojectorigin = project_updated.value;
 
 
 
@@ -101,8 +107,44 @@ const Todos = (title, description, duedate, priority) =>{
   
   //Id beginnt mit 1 
   const IDValuation = () =>{Todoid++;return Todoid;}
+
+  //Update Todos
+const Update = (newtitle, newdesc, newdate, newpriority, neworigin) => {
   
-    return {getTitle, getDesc, getPriority, getDate, IDValuation};
+  if(newtitle != undefined && newtitle != ""){
+    title = newtitle;
+  }else{
+    console.log("undefined");
+  }
+  
+  if(newdesc != undefined && newdesc != ""){
+    description = newdesc;
+  }else{
+    console.log("undefined");
+  }
+
+  if(newdate != undefined && newdate != ""){
+    duedate = newdate;
+  }else{
+    console.log("undefined");
+  }
+
+  if(newpriority != undefined && newpriority != ""){
+    priority = newpriority;
+  }else{
+    console.log("undefined");
+  }
+
+  if(neworigin != undefined || neworigin != ""){
+    console.log(neworigin);
+  }else{
+    console.log("undefined");
+  }
+};
+
+
+  
+    return {getTitle, getDesc, getPriority, getDate, IDValuation, Update};
   }
   
   
@@ -125,14 +167,12 @@ const Todos = (title, description, duedate, priority) =>{
         AllProjectObjects[id].ProjectArray.push(myTodo)
   
         console.log(AllProjectObjects[id].ProjectArray);
-        
-       
-       
+   
         console.log("EXECUTEEEDDDDD")
       
   }
-  
-  
+
+
   //Display
   const Display = (id) =>  {
   
@@ -259,30 +299,22 @@ add_project.addEventListener("click", () =>{
   
   
 
-
-create_btn.addEventListener("click", () =>{
+//Add a new Todo
+create_btn[1].addEventListener("click", () =>{
 
 const myTodo = Todos(title_input.value, desc_input.value, date_input.value, priority_input.value);
 TodosObjectArray.push(myTodo);
 
-
 //Add TODOS TO ARRAY ON OBJECT
 AllProjectObjects[project_input.value].addTodos(project_input.value, myTodo);
 console.log(project_input.value)
-
-
-
 });
-
-
-
-
 
 
 //Show Modal1 
 add_btn.addEventListener("click", () =>{
 
-  modal.style.display = "block";
+  modal[1].style.display = "block";
   
   });
 
@@ -291,7 +323,20 @@ add_btn.addEventListener("click", () =>{
 
     item.addEventListener("click", () =>{
 
-      modal.style.display = "none";
+      modal[1].style.display = "none";
+      
+      });
+  });
+
+  //Show Update Modal
+
+
+//Close Modal
+modal_update_close.forEach( (item) =>{
+
+    item.addEventListener("click", () =>{
+
+      modal[0].style.display = "none";
       
       });
   });
@@ -333,6 +378,7 @@ add_btn.addEventListener("click", () =>{
   
   
   
+
   
   
   
@@ -341,6 +387,10 @@ add_btn.addEventListener("click", () =>{
   let count = 0;
   
 //Move onto Project Object?!?!
+
+
+
+  
 
 function RemoveItem (id) {
    //panelid == id welche grad gedrückt wirde von panel
@@ -355,10 +405,42 @@ function RemoveItem (id) {
      
      count++;
      console.log("executed " + count + " times");
-     
+    
      //Display again
      DisplayAgain(panelid); 
 }
+
+let myid = 0;
+let mydiv;
+
+
+function CheckPriority(myid){
+  if(AllProjectObjects[panelid].ProjectArray[myid].getPriority() == 'High'){
+    mydiv.style.color = "red";
+    
+      }else if(AllProjectObjects[panelid].ProjectArray[myid].getPriority() == 'Medium'){
+        mydiv.style.color = "yellow";
+      }else{
+        mydiv.style.color = "blue";
+        console.log(AllProjectObjects[panelid].ProjectArray[myid].getPriority());
+      }
+}
+
+//UPDATE AN TODO !"!!§!§§!!§"
+create_btn[0].addEventListener("click", () =>{
+
+  console.log(newtitle.value)
+
+  AllProjectObjects[panelid].ProjectArray[myid].Update(newtitle.value, newdesc.value, newdate.value, newpriority.value, newprojectorigin.value);
+
+  console.log("updated value");
+  console.log(AllProjectObjects[panelid].ProjectArray[myid].getTitle());
+ 
+
+  //Display again
+  CheckPriority(myid);
+  DisplayAgain(panelid); 
+  });
 
    function AddTodo(title, description, duedate, priority, id) {
   
@@ -421,23 +503,26 @@ function RemoveItem (id) {
   todo_container.appendChild(todo_right);
   
   /*ICONS*/
-  const icons = ['<i class="fa-solid fa-pencil"></i>', '  <i class="fa-solid fa-flag"></i>', '  <i class="fa-solid fa-circle-arrow-right"></i>', '<i class="fa-solid fa-trash"></i>'];
+  const icons = ['<i class="fa-solid fa-pencil"></i>', '  <i class="fa-solid fa-flag"></i>',  '<i class="fa-solid fa-trash"></i>'];
   
   for(let i = 0; i < icons.length; i++){
   
-    let div = document.createElement("i");
-    div.innerHTML = icons[i];
-    div.id = i;
-    div.addEventListener("click", (e) => {
+   mydiv = document.createElement("i");
+    mydiv.innerHTML = icons[i];
+    mydiv.id = i;
+    mydiv.addEventListener("click", (e) => {
   console.log(e.target);
 
   //Target Icons right here | SHOW 
 
-  if(e.target.id == 3){
+  if(e.target.id == 2){
 
     //Delete Todo
     RemoveItem(id);
 
+  }else if(e.target.id == 0){
+    modal[0].style.display = "block";
+    myid = id;
   }
 
 
@@ -445,18 +530,19 @@ function RemoveItem (id) {
 
     });
 
-    todo_right.appendChild(div);
+    todo_right.appendChild(mydiv);
   
-    if(div.innerHTML == icons[1]){
+    if(mydiv.innerHTML == icons[1]){
   
       if(priority == 'High'){
-    div.style.color = "red";
-    
-      }else if(priority == 'Medium'){
-        div.style.color = "yellow";
-      }else{
-        div.style.color = "blue";
-      }
+        mydiv.style.color = "red";
+        
+          }else if(priority == 'Medium'){
+            mydiv.style.color = "yellow";
+          }else{
+            mydiv.style.color = "blue";
+            console.log(priority);
+          }
     
     }
   
@@ -468,6 +554,8 @@ function RemoveItem (id) {
   
   
   /*TODO*/
+
+
   
   
   
@@ -518,6 +606,10 @@ function RemoveItem (id) {
   //Add Option to select
   project_input.options[project_input.options.length] = new Option(proj_name.value, ProjectId);
   console.log("OPTION ADDED");
+
+  //Add Option to select
+  project_updated.options[project_updated.options.length] = new Option(proj_name.value, ProjectId);
+  console.log("OPTION 2 ADDED");
   
   });
   

@@ -13,14 +13,14 @@ body{
 --nav-top-col: rgb(37, 37, 144);
 --main-col: white;
 --main-bg-col: whitesmoke;
---btn-accent-col: rgba(160, 157, 157, 0.2);
+--btn-accent-col: rgba(207, 188, 188, 0.2);
 --btn-hov-accent-col: rgba(160, 157, 157, 0.6);
 --notify-col: rgba(245, 8, 8, 0.7);
 --side-hov-col: rgb(241, 237, 237);
 --cre-btn-bg-col: rgb(62, 62, 210);
 --close-icon-col: black;
 --modal-border-bottom: lightgray;
---icon-col: gray;
+--icon-col: rgb(173, 170, 170);
 --text-col: black;
 --input-bg-col: rgb(235, 235, 235);
 --input-col: black;
@@ -190,7 +190,7 @@ display: block;
 
  }
 
-.add-project-panel > .project > .fa-plus, .todo-right  > i{
+.add-project-panel > .project > .fa-plus, .todo-right > i{
   background-color: var(--btn-accent-col);
   width: 32px;
       height: 32px;
@@ -263,7 +263,7 @@ color: var(--text-col);
   column-gap: 20px;
 }
 
-.todo-right > i{
+.todo-right  > i{
   color: var(--icon-col);
   font-size: 1.8em;
 }
@@ -286,8 +286,6 @@ color: var(--text-col);
 .content-modal-2 > .modal-bottom{
   padding: 20px;
 }
-
-
 
 
 
@@ -356,7 +354,7 @@ gap: 15px;
       grid-row: 2 / 4;
      }
 
-     #desc{
+     #desc, #desc-updated{
      width: 100%;
      resize: none;
      height: 100%;
@@ -387,13 +385,41 @@ background-color: var(--main-col);
 border: 1px solid var(--close-icon-col);
 }
 
-     .create-btn, .proj-create-btn{
+     .create-btn, .proj-create-btn, .update-btn{
 background-color: var(--cre-btn-bg-col);
 color: var(--main-col);
      }
 
-     .close:hover, .create-btn:hover, .proj-create-btn{
+     .close:hover, .create-btn:hover, .proj-create-btn, .update-btn:hover{
      cursor: pointer;
 }
 
+/*
+.icon-box{
+padding: 10px;
+width: 70px;
+height: 70px;
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+}
 
+
+.icon-box:hover .tip{
+opacity: 1;
+}
+
+.tip{
+  background-color: rgb(44, 43, 43);
+  font-size: 1.8em;
+  min-width: 100px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  left: -5%;
+  bottom: -45%;
+  opacity: 0;
+}
+*/

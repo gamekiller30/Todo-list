@@ -124,20 +124,26 @@
   
   <div class="todo-right">
   
-    
+    <div class="icon-box">
     <i class="fa-solid fa-pencil"></i>
-
+  
+    <div class="tip">Edit Todos</div>
+  </div>
+ 
+  <div class="icon-box">
  
     <i class="fa-solid fa-flag"></i>
 
-
+    <div class="tip">Priority</div>
+</div>
     
-    <i class="fa-solid fa-circle-arrow-right"></i>
  
-
- 
+    <div class="icon-box">
+    
     <i class="fa-solid fa-trash"></i>
-  
+
+    <div class="tip">Delete</div>
+  </div>
 
   </div>
   
@@ -202,6 +208,73 @@
 
 
 
+
+
+<!--UPDATE  Modal-->
+
+<div class="content-modal">
+
+
+  <div class="modal-top">
+  
+  <h2>Update Todo</h2>
+  
+  <i class="fa-solid fa-xmark" id="close-updated-btn"></i>
+  
+  
+  </div>
+  
+  <div class="modal-bottom">
+  
+  <div class="up">
+  <label for="title">Change Title</label>
+  <input type="text" name="title-updated" id="title-updated" placeholder="Titlebefore">
+  </div>
+  
+  <div class="up">
+    <label for="date">Change Due Date</label>
+    <input type="date" name="date-updated" id="date-updated" >
+    </div>
+  
+    <div class="up">
+      <label for="desc">Update Description</label>
+      <textarea name="desc-updated" id="desc-updated" placeholder="Desc before lol" ></textarea>
+      </div>
+  
+    
+    <div class="up">
+      <label for="priority">Change Priority</label>
+      <select name="priority-updated" id="priority-updated">
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+      </div>
+  
+    
+      <div class="up">
+        <label for="project">Move to Project</label>
+        <select name="project-updated" id="project-updated">
+        <option value="0" id="0">Inbox</option>
+      </select>
+        </div>
+    
+    <!--Modal Bottom End-->
+    </div>
+  
+  <div class="modal-end">
+  
+  <button id="close-updated-btn" class="close">Close</button>
+  <button class="create-btn">Update Todo</button>
+  
+  </div>
+  
+  
+    
+    </div>
+
+
+    <!--Modal END-->
 
 
 
