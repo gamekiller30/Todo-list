@@ -70,7 +70,7 @@ h1{
 }
 
 
-.left-section > i{
+.left-section > .icon > i{
 font-size: 2.5em;
 }
 
@@ -80,16 +80,16 @@ font-size: 2.5em;
   column-gap: 20px;
 }
 
-.right-section > i, .right-section > div{
+.right-section > .icon > i, .right-section > .notification > .icon > i{
 font-size: 2.5em;
 }
 
-.left-section > i:hover, .right-section > i:hover, .notification > i:hover{
+.left-section > .icon > i:hover, .right-section > .icon > i:hover, .notification > .icon > i:hover{
   cursor: pointer;
   background-color: var(--btn-hov-accent-col);
     }
   
-    .left-section > i, .right-section > i, .notification > i{
+    .left-section > .icon > i, .right-section > .icon > i, .notification > .icon > i{
       background-color: var(--btn-accent-col);
       width: 45px;
       height: 45px;
@@ -113,15 +113,15 @@ font-size: 2.5em;
     position: absolute;
     top: 0;
     right: 0;
-    font-size: 0.7em;
+    font-size: 1.4em;
     background-color: var(--notify-col);
     width: 22px;
     height: 22px;
     display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
    }
 
 

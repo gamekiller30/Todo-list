@@ -98,7 +98,7 @@ const project_updated = document.querySelector("#project-updated");
 //OBJECTS
 
 //Factory Function for Todos
-const Todos = (title, description, duedate, priority) =>{
+const Todos = (title, description, duedate, priority, origin) =>{
 
   const getTitle = () => title;
   const getDesc = () => description;
@@ -108,8 +108,10 @@ const Todos = (title, description, duedate, priority) =>{
   //Id beginnt mit 1 
   const IDValuation = () =>{Todoid++;return Todoid;}
 
+const getorigin = () => origin;
+
   //Update Todos
-const Update = (newtitle, newdesc, newdate, newpriority, neworigin) => {
+const Update = (newtitle, newdesc, newdate, newpriority, neworigin, myid) => {
   
   if(newtitle != undefined && newtitle != ""){
     title = newtitle;
@@ -135,11 +137,22 @@ const Update = (newtitle, newdesc, newdate, newpriority, neworigin) => {
     console.log("undefined");
   }
 
-  if(neworigin != undefined || neworigin != ""){
+
+/*  if(neworigin != undefined && neworigin != "" && neworigin != origin){
+    
+    origin = neworigin;
+  let arrlen = AllProjectObjects[neworigin].ProjectArray.length;
+  AllProjectObjects[neworigin].ProjectArray[arrlen] = AllProjectObjects[origin].ProjectArray[myid];
+  
+  console.log("UPDATZED PROJ:" + neworigin);
     console.log(neworigin);
+
   }else{
     console.log("undefined");
-  }
+  }*/
+
+
+
 };
 
 
@@ -302,7 +315,7 @@ add_project.addEventListener("click", () =>{
 //Add a new Todo
 create_btn[1].addEventListener("click", () =>{
 
-const myTodo = Todos(title_input.value, desc_input.value, date_input.value, priority_input.value);
+const myTodo = Todos(title_input.value, desc_input.value, date_input.value, priority_input.value, project_input.value);
 TodosObjectArray.push(myTodo);
 
 //Add TODOS TO ARRAY ON OBJECT
@@ -431,29 +444,40 @@ create_btn[0].addEventListener("click", () =>{
 
   console.log(newtitle.value)
 
-  AllProjectObjects[panelid].ProjectArray[myid].Update(newtitle.value, newdesc.value, newdate.value, newpriority.value, newprojectorigin.value);
+  AllProjectObjects[panelid].ProjectArray[myid].Update(newtitle.value, newdesc.value, newdate.value, newpriority.value, project_updated.value, myid);
 
   console.log("updated value");
   console.log(AllProjectObjects[panelid].ProjectArray[myid].getTitle());
  
+  //In Objekt packen in Objekt panelid ziehen
+if(project_updated.value != "" && project_updated.value != undefined && project_updated.value != panelid){
+
+let arrlen = AllProjectObjects[project_updated.value].ProjectArray.length;
+
+AllProjectObjects[project_updated.value].ProjectArray[arrlen] = AllProjectObjects[panelid].ProjectArray[myid];
+
+console.log("UPDATZED PROJ:" + project_updated.value);
+
+}else{
+  console.log("not executed current id tried");
+  console.log("UPDATZED PROJ:" + project_updated.value);
+}
+
 
   //Display again
   CheckPriority(myid);
-  DisplayAgain(panelid); 
-  });
+  DisplayAgain(panelid);
+  
+  //Nochmal eine eigene Remove Func schreiben
+  if(project_updated.value != "" && project_updated.value != undefined && project_updated.value != panelid){
+  AllProjectObjects[panelid].ProjectArray[myid] = ''; 
+  DisplayAgain(panelid);
+}
+
+
+});
 
    function AddTodo(title, description, duedate, priority, id) {
-  
-  /*HEADER
-  let main_header = document.createElement("div");
-  main_header.classList.add("Main-Header");
-  main.appendChild(main_header);
-  
-  let h1 = document.createElement("h1");
-  h1.textContent = "Project1  you have  12 Todos open"
-  main_header.appendChild(h1);
-  
-  */
   
   /*TODO*/
   let todo_container = document.createElement("div");
@@ -525,10 +549,8 @@ create_btn[0].addEventListener("click", () =>{
     myid = id;
   }
 
-
-
-
     });
+
 
     todo_right.appendChild(mydiv);
   
@@ -563,7 +585,7 @@ create_btn[0].addEventListener("click", () =>{
   
   
   
-  //Create a Project -> Das alles vielleicht in ein Controller Object packen, der Content anzeigt (auch mit Modals)
+  //Creates a Project -> Das alles vielleicht in ein Controller Object packen, der Content anzeigt (auch mit Modals)
   create_btn_project.addEventListener("click", () =>{
   
   
