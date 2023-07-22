@@ -278,18 +278,25 @@ color: var(--text-col);
 
 /*Modal2*/
 .content-modal-2{
-  color: var(--text-col);
   position: fixed;
   display: none;
-  top: 30%;
-  left: 30%;
-  min-width: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(18, 18, 18, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.ovl-wrapper{
   background-color: var(--main-col);
+  color: var(--text-col);
+ width: 90%;
   font-size: 10px;
 }
 
-
-.content-modal-2 > .modal-bottom{
+.content-modal-2 > .ovl-wrapper > .modal-bottom{
   padding: 20px;
 }
 
@@ -297,15 +304,23 @@ color: var(--text-col);
 
    /*Modal*/
    .content-modal{
-    color: var(--text-col);
     position: fixed;
     display: none;
-    top: 30%;
-    left: 30%;
-    min-width: 50%;
-    background-color: var(--main-col);
-    font-size: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(18, 18, 18, 0.4);
+    justify-content: center;
+    align-items: center;
    }
+
+   .ovl-wrapper{
+    background-color: var(--main-col);
+    color: var(--text-col);
+   width: 90%;
+    font-size: 10px;
+  }
 
    .modal-top{
     display: flex;
@@ -315,15 +330,15 @@ color: var(--text-col);
     padding: 20px;
    }
 
-   .modal-top > h2, .modal-top > i, .close-m{
+   .modal-top > h2, .modal-top  > i, .close-m{
   font-size: 2.8em;
    }
 
-  .modal-top > i:hover, .close-m{
+  .modal-top > .ovl-wrapper > i:hover, .close-m{
   cursor: pointer;
      }
 
-     .content-modal > .modal-bottom{
+     .content-modal > .ovl-wrapper >.modal-bottom{
 padding: 20px;
 display: grid;
 grid-template-columns: repeat(2, 1fr);

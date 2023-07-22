@@ -317,7 +317,7 @@ nav_panel.addEventListener("click", (e) =>{
 
 //Open Modal2
 add_project.addEventListener("click", () =>{
-  modal_2.style.display = "block";
+  modal_2.style.display = "flex";
 
   });
 
@@ -339,7 +339,7 @@ console.log(project_input.value)
 //Show Modal1 
 add_btn.addEventListener("click", () =>{
 
-  modal[1].style.display = "block";
+  modal[1].style.display = "flex";
   
   });
 
@@ -557,7 +557,7 @@ console.log("UPDATZED PROJ:" + project_updated.value);
     RemoveItem(id);
 
   }else if(e.target.id == 0){
-    modal[0].style.display = "block";
+    modal[0].style.display = "flex";
     myid = id;
   }
 
