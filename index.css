@@ -131,6 +131,12 @@ font-size: 2.5em;
   height: 100vh;
 }
 
+@media screen and (max-width: 600px) {
+  .main-grid {
+    flex-direction: column;
+  }
+}
+
 
    /*Side Nav*/
  .side-nav{

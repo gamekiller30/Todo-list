@@ -4,6 +4,9 @@
  let Todoid = 0;
   const main = document.querySelector(".main-content");
   const AllProjectObjects = [];
+
+
+
   const create_btn_project = document.querySelector(".proj-create-btn");
   const proj_name = document.querySelector("#proj-name");
  let ProjectId = 0;
@@ -14,6 +17,13 @@ const modeswitch = document.querySelector(".fa-moon");
 const root = document.documentElement;
 let darkcheck = localStorage.getItem("key");
 localStorage.setItem("key", true);
+
+
+
+
+
+
+
 
 console.log(darkcheck)
 
@@ -162,11 +172,11 @@ const Update = (newtitle, newdesc, newdate, newpriority, neworigin, myid) => {
   
   
   
-  
-  
-  
+
+ 
   //Factory Function for Projects
   const myProjects = (name, id) =>{
+
   
     const ProjectArray = [];
   
@@ -181,6 +191,8 @@ const Update = (newtitle, newdesc, newdate, newpriority, neworigin, myid) => {
   
         console.log(AllProjectObjects[id].ProjectArray);
    
+
+
         console.log("EXECUTEEEDDDDD")
       
   }
@@ -310,8 +322,6 @@ add_project.addEventListener("click", () =>{
   });
 
   
-  
-
 //Add a new Todo
 create_btn[1].addEventListener("click", () =>{
 
@@ -321,6 +331,8 @@ TodosObjectArray.push(myTodo);
 //Add TODOS TO ARRAY ON OBJECT
 AllProjectObjects[project_input.value].addTodos(project_input.value, myTodo);
 console.log(project_input.value)
+
+
 });
 
 
