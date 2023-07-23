@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Todos</title>
+   <!-- custom css file link  -->
+   <!--<link rel="stylesheet" href="index.css">-->
+
+  <!--Font Awesome Icons-->
+  <script src="https://kit.fontawesome.com/9990c5d7cd.js" crossorigin="anonymous"></script>
+
+<style>
+  *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+:root.lightmode{
+  /*put colors in here for darkmode later*/
+--nav-top-col: rgb(37, 37, 144);
+--main-col: white;
+--main-bg-col: whitesmoke;
+--btn-accent-col: rgba(207, 188, 188, 0.2);
+--btn-hov-accent-col: rgba(160, 157, 157, 0.6);
+--notify-col: rgba(245, 8, 8, 0.7);
+--side-hov-col: rgb(241, 237, 237);
+--cre-btn-bg-col: rgb(62, 62, 210);
+--close-icon-col: black;
+--modal-border-bottom: lightgray;
+--icon-col: rgb(173, 170, 170);
+--text-col: black;
+--input-bg-col: rgb(235, 235, 235);
+--input-col: black;
+--big-header: black;
+}
+
+
+:root.darkmode{
+  --nav-top-col: rgb(27, 27, 27);
+  --main-col: rgba(75, 75, 100, 0.6);
+  --main-bg-col: rgb(21, 21, 21);
+  --btn-accent-col: rgba(160, 157, 157, 0.2);
+  --btn-hov-accent-col: rgba(160, 157, 157, 0.6);
+  --notify-col: rgba(245, 8, 8, 0.2);
+  --side-hov-col: rgba(75, 75, 100, 0.9);
+  --cre-btn-bg-col: rgb(29, 28, 28);
+  --close-icon-col: black;
+  --modal-border-bottom: lightgray;
+  --sidebar-bg-col: rgb(17, 17, 17);
+  --icon-col: gray;
+  --text-col: gray;
+  --input-bg-col: rgba(75, 75, 100, 0.9);
+  --input-col: gray;
+  --big-header: gray;
+}
+
+h1{
+  color: var(--big-header);
+}
+
+/*Nav Top*/
+
+.top-navbar{
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--nav-top-col);
+  align-items: center;
+  padding: 20px;
+  font-size: 10px;
+  color: var(--main-col);
+}
+
+
+.left-section{
+  display: flex;
+  column-gap: 20px;
+}
+
+
+.left-section > .icon > i{
+font-size: 2.5em;
+}
+
+.right-section{
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.right-section > .icon > i, .right-section > .notification > .icon > i{
+font-size: 2.5em;
+}
+
+.left-section > .icon > i:hover, .right-section > .icon > i:hover, .notification > .icon > i:hover{
+  cursor: pointer;
+  background-color: var(--btn-hov-accent-col);
+    }
+  
+    .left-section > .icon > i, .right-section > .icon > i, .notification > .icon > i{
+      background-color: var(--btn-accent-col);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--icon-col);
+        }
+
+
+
+
+ .notification{
+          position: relative;
+          padding: 15px;
+   }
+
+   .notifiy-num{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.4em;
+    background-color: var(--notify-col);
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+   }
+
+
+   /*Flex*/
+.main-grid{
+  display: flex;
+  height: 100vh;
+}
+
+@media screen and (max-width: 600px) {
+  .main-grid {
+    flex-direction: column;
+  }
+}
+
+
+   /*Side Nav*/
+ .side-nav{
+background-color: var(--sidebar-bg-col);
+padding: 20px 10px;
+font-size: 10px;
+opacity: 1;
+color: var(--text-col);
+flex: 1;
+display: block;
+ }
+
+ .side-nav > .nav-panel{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  background-color: var(--main-col);
+  padding: 12px;
+  font-size: 2em;
+  border-radius: 5px;
+
+ }
+
+ .side-nav > .Project-area >.project-panel{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  background-color: var(--main-col);
+  padding: 12px;
+  font-size: 2em;
+  border-radius: 5px;
+  margin-left: 20px;
+ }
+
+ .side-nav > .Project-area >.add-project-panel{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  /*background-color: var(--main-col);*/
+  padding: 12px;
+  font-size: 2em;
+  margin-left: 20px;
+ }
+
+ .project{
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  pointer-events: none;
+ }
+
+ 
+ .side-nav > .nav-panel:hover,  .side-nav > .Project-area >.project-panel:hover{
+  background-color: var(--side-hov-col);
+  cursor: pointer;
+
+ }
+
+.add-project-panel > .project > .fa-plus, .todo-right > .mydiv > i, .mydiv{
+      background-color: var(--btn-accent-col);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+}
+
+.add-project-panel > .project > .fa-plus:hover, .todo-right > .mydiv >  i:hover{
+  background-color: var(--btn-hov-accent-col);
+  cursor: pointer;
+}
+
+
+.Project-area{
+  display: block;
+}
+
+
+
+
+   /*Main Content*/
+   .main-content{
+background-color: var(--main-bg-col);
+padding: 20px;
+flex: 4;
+   }
+
+.Main-Header{
+text-align: center;
+}
+
+/*Todo Task*/
+.todo-container{
+background-color: var(--main-col);
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px;
+font-size: 10px;
+margin-top: 20px;
+color: var(--text-col);
+}
+
+.todo-left{
+  display: flex;
+  column-gap: 20px;
+  width: 80%;
+
+}
+
+#check{
+  width: 20px;
+}
+
+.todo-text > h3{
+ 
+  font-size: 2.5em;
+}
+
+.todo-text  > p{
+ font-size: 1.8em;
+
+}
+
+.todo-right{
+  display: flex;
+  column-gap: 20px;
+}
+
+.todo-right > .mydiv > i{
+  color: var(--icon-col);
+  font-size: 1.8em;
+  pointer-events: none;
+
+}
+
+.todo-right > .mydiv:nth-child(2) > i{
+color: rgb(34, 34, 34);
+}
+
+.mydiv:hover{
+ cursor: pointer;
+
+}
+
+
+/*Modal2*/
+.content-modal-2{
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(18, 18, 18, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.ovl-wrapper{
+  background-color: var(--main-col);
+  color: var(--text-col);
+ width: 90%;
+  font-size: 10px;
+}
+
+.content-modal-2 > .ovl-wrapper > .modal-bottom{
+  padding: 20px;
+}
+
+
+
+   /*Modal*/
+   .content-modal{
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(18, 18, 18, 0.4);
+    justify-content: center;
+    align-items: center;
+   }
+
+   .ovl-wrapper{
+    background-color: var(--main-col);
+    color: var(--text-col);
+   width: 90%;
+    font-size: 10px;
+  }
+
+   .modal-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--modal-border-bottom);
+    padding: 20px;
+   }
+
+   .modal-top > h2, .modal-top  > i, .close-m{
+  font-size: 2.8em;
+   }
+
+  .modal-top > .ovl-wrapper > i:hover, .close-m{
+  cursor: pointer;
+     }
+
+     .content-modal > .ovl-wrapper >.modal-bottom{
+padding: 20px;
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 15px;
+     }
+
+  
+
+     .up{
+      display: flex;
+      flex-direction: column;
+      font-size: 1.8em;
+      gap: 10px;
+     }
+
+     .up > input{
+      height: 40px;
+      padding-left: 5px;
+      outline: none;
+      background-color: var(--input-bg-col);
+      color: var(--input-col);
+      border: none;
+     }
+
+     .up > select{
+      height: 40px;
+      outline: none;
+      background-color: var(--input-bg-col);
+      color: var(--input-col);
+      border: none;
+     }
+
+     .modal-bottom > .up:nth-child(3){
+      grid-row: 2 / 4;
+     }
+
+     #desc, #desc-updated{
+     width: 100%;
+     resize: none;
+     height: 100%;
+     padding: 10px;
+     outline: none;
+     background-color: var(--input-bg-col);
+     color: var(--input-col);
+     border: none;
+     }
+
+     .modal-end{
+      padding: 20px;
+      display: flex;
+      justify-content: flex-end;
+      column-gap: 20px;
+     }
+
+     .close, .create-btn, .proj-create-btn{
+padding: 12px 20px;
+border: none;
+border-radius: 3px;
+font-size: 1.8em;
+margin-top: -10px;
+     }
+
+  .close{
+background-color: var(--main-col);
+border: 1px solid var(--close-icon-col);
+}
+
+     .create-btn, .proj-create-btn, .update-btn{
+background-color: var(--cre-btn-bg-col);
+color: var(--main-col);
+     }
+
+     .close:hover, .create-btn:hover, .proj-create-btn, .update-btn:hover{
+     cursor: pointer;
+}
+
+/*
+.icon-box{
+padding: 10px;
+width: 70px;
+height: 70px;
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+
+.icon-box:hover .tip{
+opacity: 1;
+}
+
+.tip{
+  background-color: rgb(44, 43, 43);
+  font-size: 1.8em;
+  min-width: 100px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  left: -5%;
+  bottom: -45%;
+  opacity: 0;
+}
+*/
+</style>
+
+
+
+</head>
+<body>
+
+  <!--Nav Top-->
+
+<div class="top-navbar">
+
+<div class="left-section">
+
+  <div class="icon">
+  <i class="fa-solid fa-bars-staggered"></i>
+</div>
+
+<div class="icon">
+  <i class="fa-solid fa-house" id="0"></i>
+</div>
+</div>
+
+
+<div class="right-section">
+
+<!--<div class="project-name">My Project Name</div>-->
+
+<!--
+<div class="notification">
+  <div class="icon">
+<i class="fa-solid fa-bell"></i>
+
+<div class="notifiy-num">2</div>
+</div>
+</div>
+-->
+
+<div class="icon">
+<i class="fa-solid fa-moon"></i>
+</div>
+
+<div class="icon">
+<i class="fa-solid fa-plus"></i>
+</div>
+</div>
+
+</div>
+
+
+<!--Grid-->
+
+<div class="main-grid">
+
+
+<!--Side Nav-->
+
+<div class="side-nav">
+
+
+  
+<div class="nav-panel" id="0">
+  <div class="project">
+  <i class="fa-solid fa-inbox"></i>
+  <p>Inbox</p>
+  </div>
+
+</div>
+
+
+
+<div class="nav-panel" id="project-show">
+
+  <div class="project">
+  <i class="fa-solid fa-bars-progress"></i>
+  <p>Projects</p>
+</div>
+
+<div class="arrow">
+  <i class="fa-solid fa-chevron-up"></i>
+</div>
+
+</div>
+
+<div class="Project-area">
+
+<!--Add Project-->
+<div class="add-project-panel">
+  <div class="project">
+    <i class="fa-solid fa-plus"></i>
+  <p>Add new Project</p>
+</div>
+</div>
+
+
+
+
+
+</div>
+
+<!--Side nav end-->
+</div>
+
+
+
+<!--Main Content-->
+<div class="main-content">
+
+
+
+<!--Todo Container Start-->
+<div class="todo-container">
+
+  <div class="todo-left">
+  
+  <input type="checkbox" name="check" id="check">
+  
+  <div class="todo-text">
+  
+  <h3>Todo Header</h3>
+  
+  <p>Our Todo Text will go exactly here my friend!!!</p>
+  
+  </div>
+  
+  </div>
+  
+  
+  <div class="todo-right">
+  
+    <div class="tip-box">
+    <i class="fa-solid fa-pencil"></i>
+  
+    <div class="tip">Edit Todos</div>
+  </div>
+ 
+  <div class="tip-box">
+ 
+    <i class="fa-solid fa-flag"></i>
+
+    <div class="tip">Priority</div>
+</div>
+    
+ 
+    <div class="tip-box">
+    
+    <i class="fa-solid fa-trash"></i>
+
+    <div class="tip">Delete</div>
+  </div>
+
+  </div>
+  
+  </div>
+ <!--Todo Container End-->
+
+  <!--Main End-->
+</div>
+
+
+
+
+
+<!--Grid End-->
+</div>
+
+
+
+
+
+
+<!--Content Modal2-->
+
+<div class="content-modal-2">
+
+<div class="ovl-wrapper">
+  <div class="modal-top">
+  
+  <h2>New Project</h2>
+  
+  <div class="close-m">
+  <i class="fa-solid fa-xmark" id="proj-close-btn"></i>
+</div>
+  
+  </div>
+  
+  <div class="modal-bottom">
+  
+  <div class="up">
+  <label for="proj-name">Project Name</label>
+  <input type="text" name="proj-name" id="proj-name" required>
+  </div>
+ 
+    <!--Modal Bottom End-->
+    </div>
+  
+  <div class="modal-end">
+  
+  <button id="proj-close-btn" class="close">Close</button>
+  
+  <button class="proj-create-btn">Add Todo</button>
+</div>
+  </div>
+  
+  
+    
+    </div>
+
+
+    <!--Modal2 END-->
+
+
+
+
+
+
+<!--UPDATE  Modal-->
+
+<div class="content-modal">
+
+  <div class="ovl-wrapper">
+
+  <div class="modal-top">
+  
+  <h2>Update Todo</h2>
+  
+  <i class="fa-solid fa-xmark" id="close-updated-btn"></i>
+  
+  
+  </div>
+  
+  <div class="modal-bottom">
+  
+  <div class="up">
+  <label for="title">Change Title</label>
+  <input type="text" name="title-updated" id="title-updated" placeholder="Titlebefore">
+  </div>
+  
+  <div class="up">
+    <label for="date">Change Due Date</label>
+    <input type="date" name="date-updated" id="date-updated" >
+    </div>
+  
+    <div class="up">
+      <label for="desc">Update Description</label>
+      <textarea name="desc-updated" id="desc-updated" placeholder="Desc before lol" ></textarea>
+      </div>
+  
+    
+    <div class="up">
+      <label for="priority">Change Priority</label>
+      <select name="priority-updated" id="priority-updated">
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+      </div>
+  
+    
+      <div class="up">
+        <label for="project">Move to Project</label>
+        <select name="project-updated" id="project-updated">
+        <option value="0" id="0">Inbox</option>
+      </select>
+        </div>
+    
+    <!--Modal Bottom End-->
+    </div>
+  
+  <div class="modal-end">
+  
+  <button id="close-updated-btn" class="close">Close</button>
+  <button class="create-btn">Update Todo</button>
+  
+  </div>
+  
+  </div>
+    
+    </div>
+
+
+    <!--Modal END-->
+
+
+
+
+
+
+
+
+
+
+<!--Content Modal-->
+
+<div class="content-modal">
+
+<div class="ovl-wrapper">
+  <div class="modal-top">
+  
+  <h2>New Todo</h2>
+  
+  <i class="fa-solid fa-xmark" id="close-btn"></i>
+  
+  
+  </div>
+  
+  <div class="modal-bottom">
+  
+  <div class="up">
+  <label for="title">Title</label>
+  <input type="text" name="title" id="title" required>
+  </div>
+  
+  <div class="up">
+    <label for="date">Due Date</label>
+    <input type="date" name="date" id="date" required>
+    </div>
+  
+    <div class="up">
+      <label for="desc">Description</label>
+      <textarea name="desc" id="desc" required></textarea>
+      </div>
+  
+    
+    <div class="up">
+      <label for="priority">Priority</label>
+      <select name="priority" id="priority">
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+      </div>
+  
+    
+      <div class="up">
+        <label for="project">Select Project</label>
+        <select name="project" id="project">
+        <option value="0" id="0">Inbox</option>
+      </select>
+        </div>
+    
+    <!--Modal Bottom End-->
+    </div>
+  
+  <div class="modal-end">
+  
+  <button id="close-btn" class="close">Close</button>
+  <button class="create-btn">Add Todo</button>
+  
+  </div>
+  
+</div>
+    
+    </div>
+
+
+    <!--Modal END-->
+
+
+
+
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
