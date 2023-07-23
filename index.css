@@ -158,6 +158,7 @@ display: block;
   padding: 12px;
   font-size: 2em;
   border-radius: 5px;
+
  }
 
  .side-nav > .Project-area >.project-panel{
@@ -187,6 +188,7 @@ display: block;
   display: flex;
   align-items: center;
   column-gap: 20px;
+  pointer-events: none;
  }
 
  
@@ -196,9 +198,9 @@ display: block;
 
  }
 
-.add-project-panel > .project > .fa-plus, .todo-right > i{
-  background-color: var(--btn-accent-col);
-  width: 32px;
+.add-project-panel > .project > .fa-plus, .todo-right > .mydiv > i, .mydiv{
+      background-color: var(--btn-accent-col);
+      width: 32px;
       height: 32px;
       border-radius: 50%;
       display: flex;
@@ -207,7 +209,7 @@ display: block;
       flex-shrink: 0;
 }
 
-.add-project-panel > .project > .fa-plus:hover, .todo-right >  i:hover{
+.add-project-panel > .project > .fa-plus:hover, .todo-right > .mydiv >  i:hover{
   background-color: var(--btn-hov-accent-col);
   cursor: pointer;
 }
@@ -269,11 +271,21 @@ color: var(--text-col);
   column-gap: 20px;
 }
 
-.todo-right  > i{
+.todo-right > .mydiv > i{
   color: var(--icon-col);
   font-size: 1.8em;
+  pointer-events: none;
+
 }
 
+.todo-right > .mydiv:nth-child(2) > i{
+color: rgb(34, 34, 34);
+}
+
+.mydiv:hover{
+ cursor: pointer;
+
+}
 
 
 /*Modal2*/

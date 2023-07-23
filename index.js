@@ -539,15 +539,16 @@ console.log("UPDATZED PROJ:" + project_updated.value);
   todo_container.appendChild(todo_right);
   
   /*ICONS*/
-  const icons = ['<i class="fa-solid fa-pencil"></i>', '  <i class="fa-solid fa-flag"></i>',  '<i class="fa-solid fa-trash"></i>'];
+  const icons = ['<i class="fa-solid fa-pencil"></i>', '<i class="fa-solid fa-flag"></i>',  '<i class="fa-solid fa-trash"></i>'];
   
   for(let i = 0; i < icons.length; i++){
   
-   mydiv = document.createElement("i");
+   mydiv = document.createElement("div");
     mydiv.innerHTML = icons[i];
     mydiv.id = i;
+    mydiv.classList.add("mydiv");
     mydiv.addEventListener("click", (e) => {
-  console.log(e.target);
+  console.log(e.target.id);
 
   //Target Icons right here | SHOW 
 
@@ -563,22 +564,27 @@ console.log("UPDATZED PROJ:" + project_updated.value);
 
     });
 
+    console.log(mydiv.childNodes)
+    console.log(mydiv.childNodes[1])
+
+    if(mydiv.innerHTML == icons[1]){
+
+      if(priority == 'High'){
+        mydiv.style.backgroundColor = "red";
+        
+          }else if(priority == 'Medium'){
+            mydiv.style.backgroundColor = "yellow";
+          }else{
+            mydiv.style.backgroundColor = "blue";
+           
+          }
+          console.log(priority + "in the div");
+    }
+    console.log(priority);
 
     todo_right.appendChild(mydiv);
   
-    if(mydiv.innerHTML == icons[1]){
-  
-      if(priority == 'High'){
-        mydiv.style.color = "red";
-        
-          }else if(priority == 'Medium'){
-            mydiv.style.color = "yellow";
-          }else{
-            mydiv.style.color = "blue";
-            console.log(priority);
-          }
     
-    }
   
   
     //console.log(priority)
